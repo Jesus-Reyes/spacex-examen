@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(title: const Text("Lanzamientos SpaceX"),centerTitle: true,),
       body: StreamBuilder<List<Launch>>(
         stream: streamData.streamLaunch.stream,
         builder: (_, asyncSnapshot) {
@@ -42,42 +43,16 @@ class _HomePageState extends State<HomePage> {
             itemCount: data.length,
             itemBuilder: (context, index) {
               final launch = data[index];
-              return CardLaunch(
-                name: launch.name,
-                urlImage: (launch.links.patch.small != null) ? launch.links.patch.small! : launch.links.patch.large!,
-                dateLaunch: "${launch.dateLocal.year}-${launch.dateLocal.month}-${launch.dateLocal.day}",
-                details: (launch.details != null) ? launch.details! : "without details"  ,
-                flightNumber: launch.flightNumber,
+              return GestureDetector(
+                onTap: ()=> Navigator.pushNamed(context, 'launch', arguments: launch),
+                child: CardLaunch(
+                  name: launch.name,
+                  urlImage: (launch.links.patch.small != null) ? launch.links.patch.small! : launch.links.patch.large!,
+                  dateLaunch: "${launch.dateLocal.year}-${launch.dateLocal.month}-${launch.dateLocal.day}",
+                  details: (launch.details != null) ? launch.details! : "without details"  ,
+                  flightNumber: launch.flightNumber,
+                ),
               );
-              // return Card(
-              //   child: ListTile(
-              //     leading: Column(
-              //       mainAxisAlignment: MainAxisAlignment.center,
-
-              //       children: [
-              //         Container(
-              //           color: Colors.red,
-              //           child: FadeInImage(
-              //             // height: 100,
-              //             width: size.width * 0.15,
-              //             fit: BoxFit.cover,
-              //             placeholder: const AssetImage("assets/jar-loading.gif"),
-              //             image: NetworkImage(
-              //               (launch.links.patch.small != null) ? launch.links.patch.small! : launch.links.patch.large!,
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //     title: Text(launch.name),
-              //     subtitle: Column(
-              //       children: [
-              //         Text("Fecha de Lanzamiento: ${launch.dateLocal.toLocal()}"),
-              //         Text("Detalled del lanzamiento: ${launch.details}"),
-              //       ],
-              //     ),
-              //   ),
-              // );
             },
           );
         },

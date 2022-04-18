@@ -1,9 +1,8 @@
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:spacex/models/launch.dart';
 import 'package:spacex/pages/home_page.dart';
+import 'package:spacex/routes/index.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,12 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('SpaceX APP'),
-        ),
-        body: const HomePage()
-      ),
+      routes: getRutas(),
+      initialRoute: "/",
     );
   }
 }
