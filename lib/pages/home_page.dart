@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage> {
               return CardLaunch(
                 name: launch.name,
                 urlImage: (launch.links.patch.small != null) ? launch.links.patch.small! : launch.links.patch.large!,
-                dateLaunch: launch.dateLocal.timeZoneName,
-                details: (launch.details != null) ? launch.details! : ""  ,
+                dateLaunch: "${launch.dateLocal.year}-${launch.dateLocal.month}-${launch.dateLocal.day}",
+                details: (launch.details != null) ? launch.details! : "without details"  ,
                 flightNumber: launch.flightNumber,
               );
               // return Card(
