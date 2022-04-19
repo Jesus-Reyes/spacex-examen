@@ -19,7 +19,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: const Text("Lanzamientos SpaceX"),centerTitle: true,),
+      appBar: AppBar(
+        title: const Text("Lanzamientos SpaceX"),
+        centerTitle: true,
+        leading: Container(),
+      ),
       body: StreamBuilder<List<Launch>>(
         stream: streamData.streamLaunch.stream,
         builder: (_, asyncSnapshot) {
@@ -28,8 +32,10 @@ class _HomePageState extends State<HomePage> {
               future: spacex.getData(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return const CircularProgressIndicator(
-                    color: Colors.red,
+                  return const Center(
+                    child:  CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
                   );
                 }
                 final data = snapshot.data!;
@@ -44,12 +50,12 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               final launch = data[index];
               return GestureDetector(
-                onTap: ()=> Navigator.pushNamed(context, 'launch', arguments: launch),
+                onTap: () => Navigator.pushNamed(context, 'launch', arguments: launch),
                 child: CardLaunch(
                   name: launch.name,
                   urlImage: (launch.links.patch.small != null) ? launch.links.patch.small! : launch.links.patch.large!,
                   dateLaunch: "${launch.dateLocal.year}-${launch.dateLocal.month}-${launch.dateLocal.day}",
-                  details: (launch.details != null) ? launch.details! : "without details"  ,
+                  details: (launch.details != null) ? launch.details! : "without details",
                   flightNumber: launch.flightNumber,
                 ),
               );

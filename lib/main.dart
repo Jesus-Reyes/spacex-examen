@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       routes: getRutas(),
-      initialRoute: "/",
+      initialRoute: "splash",
     );
   }
 }
