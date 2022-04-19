@@ -22,11 +22,16 @@ class LaunchPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("${launch.dateLocal.year}-${launch.dateLocal.month}-${launch.dateLocal.day}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),), 
-                  Text("${launch.flightNumber}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
+                  Text(
+                    "${launch.dateLocal.year}-${launch.dateLocal.month}-${launch.dateLocal.day}",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "${launch.flightNumber}",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  )
                 ],
-              ), 
-
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -34,11 +39,15 @@ class LaunchPage extends StatelessWidget {
                     width: size.width * 0.5,
                     fit: BoxFit.cover,
                     placeholder: const AssetImage("assets/jar-loading.gif"),
-                    image: NetworkImage((launch.links.patch.small != null) ? launch.links.patch.small! : launch.links.patch.large!),
+                    image: NetworkImage((launch.links.patch.small != null)
+                        ? launch.links.patch.small!
+                        : "https://via.placeholder.com/300.png/09f/fff"),
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
